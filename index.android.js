@@ -8,49 +8,20 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Button,
-  Alert,
+
   Text,
   View
 } from 'react-native';
 
 export default class prueba extends Component {
-  onPress(){
-        Alert.alert(
-      'Alert Title',
-      'My Alert Msg',
-      [
-        {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
-      ],
-      { cancelable: false }
-      )
-  }
-
 
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to Platzi Music !
-        </Text>
-
-          <Button
-            onPress={this.onPress}
-            title="Learn More"
-            color="#841584"
-            accessibilityLabel="Learn more about this purple button"
-          />
-
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
+        <View style ={[styles.box, styles.red]} />
+        <View style ={[styles.box, styles.green]} />
+        <View style ={[styles.box, styles.blue]} />
       </View>
     );
   }
@@ -59,20 +30,25 @@ export default class prueba extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: 'row',
     backgroundColor: '#F5FCFF',
+    flexWrap: 'wrap',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  box: {
+    width:200,
+    height: 200,
+    backgroundColor: 'black'
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  red: {
+    backgroundColor: 'red',
   },
+  green: {
+    flex: 1,
+    backgroundColor: 'green'
+  },
+  blue: {
+    backgroundColor: 'blue',
+  }
 });
 
 AppRegistry.registerComponent('prueba', () => prueba);
