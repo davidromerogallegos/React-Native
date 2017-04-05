@@ -12,18 +12,24 @@ import {
 } from 'react-native';
 
 import ArtistList from './ArtistList';
+import { getArtists } from './api-client'
+
 
 export default class prueba extends Component {
 
-  render() {
-    const artist = {
-        image: 'http://www.tribalmixes.com/pic/dj/new/1824612_orig.jpg',
-        name: 'Ace Ventura',
-        likes: 200,
-        comments: 140,
-      }
-    const artists = Array(300).fill(artist);
+  state = {
+    artists:[]
+  }
 
+  componentDidMount(){
+    getArtists()
+    .then(data => this.setState({ artists: data }))
+
+  }
+
+  render() {
+    const artists = this.state.artists
+    
     return (
       <View style={styles.container}>
         <ArtistList artists={artists} />
