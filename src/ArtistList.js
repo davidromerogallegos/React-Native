@@ -9,10 +9,12 @@ import {
 
   StyleSheet,
   ListView,
+  TouchableOpacity,
 } from 'react-native';
 
 
 import ArtistBox from './ArtistBox';
+import {Actions} from 'react-native-router-flux';
 
 export default class ArtistList extends Component {
 
@@ -40,20 +42,23 @@ updateDataSource = data => {
   })
 }
 
-  render() {
-    const artist = {
-        image: 'http://www.tribalmixes.com/pic/dj/new/1824612_orig.jpg',
-        name: 'Ace Ventura',
-        likes: 200,
-        comments: 140,
-      }
-    const artists = Array(500).fill(artist);
+handlePress(artist){
+  Actions.artistDetail( {artist} )
+}
 
+  render() {
     return (
       <ListView
           enableEmptySections={true}
           dataSource={this.state.dataSource}
-          renderRow={(artist) => <ArtistBox artist={artist} />}
+          renderRow={(artist) =>{
+            return(
+            <TouchableOpacity
+              onPress={() => this.handlePress(artist)}>
+           <ArtistBox artist={artist} />
+           </TouchableOpacity>
+         )
+        }}
         />
     );
   }
